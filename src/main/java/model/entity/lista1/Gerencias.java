@@ -13,13 +13,14 @@ import java.util.ArrayList;
  */
 public class Gerencias extends Lotacao {
     
-    private ArrayList<Operacional> operacional;
+    private ArrayList<Operacional> operacionais;
 
-    public Gerencias(ArrayList<Operacional> operacional, String nome, Empregado responsavel) {
-        super(nome, responsavel);
-        this.operacional = operacional;
-    }
+	public Gerencias(String nome, Empregado responsavel, ArrayList<Operacional> operacionais) {
+		super(nome, responsavel);
+		this.operacionais = operacionais;
+	}
 
+    
     
     
     

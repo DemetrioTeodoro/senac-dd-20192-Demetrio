@@ -14,16 +14,23 @@ public class Diretoria extends Lotacao {
         this.gerencias = gerencias;
     }
 
-    
+	public Object getGerencias() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    
+	public String getSigla() {
+		return sigla;
+	}
 
-    
+	public void setSigla(String sigla) {
+		this.sigla = sigla;
+	}
 
-    
+	public void setGerencias(ArrayList<Gerencias> gerencias) {
+		this.gerencias = gerencias;
+	}
 
-    
-    
-    
+        
     
 }

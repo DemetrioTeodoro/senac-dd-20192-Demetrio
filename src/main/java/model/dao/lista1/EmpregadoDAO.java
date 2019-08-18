@@ -1,6 +1,8 @@
-package model.dao;
+package model.dao.lista1;
 
 import java.util.ArrayList;
+
+import model.dao.BaseDAO;
 
 
 public class EmpregadoDAO implements BaseDAO {
