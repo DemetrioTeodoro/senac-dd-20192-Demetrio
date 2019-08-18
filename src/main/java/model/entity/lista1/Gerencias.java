@@ -15,10 +15,20 @@ public class Gerencias extends Lotacao {
     
     private ArrayList<Operacional> operacionais;
 
-	public Gerencias(String nome, Empregado responsavel, ArrayList<Operacional> operacionais) {
-		super(nome, responsavel);
+	public Gerencias(int id, String nome, Empregado responsavel, ArrayList<Operacional> operacionais) {
+		super(id, nome, responsavel);
 		this.operacionais = operacionais;
 	}
+
+	public ArrayList<Operacional> getOperacionais() {
+		return operacionais;
+	}
+
+	public void setOperacionais(ArrayList<Operacional> operacionais) {
+		this.operacionais = operacionais;
+	}
+
+	
 
     
     

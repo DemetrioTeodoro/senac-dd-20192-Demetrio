@@ -1,13 +1,22 @@
 package model.dao.lista1;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
+import model.dao.Banco;
 import model.dao.BaseDAO;
+import model.entity.lista1.Diretoria;
+import model.entity.lista1.Gerencias;
+import model.entity.lista1.Lotacao;
+import model.entity.lista1.Operacional;
 
 
-public class LotacaoDAO implements BaseDAO {
+public class LotacaoDAO implements BaseDAO<Lotacao> {
 
-	public Object salvar(Object novaEntidade) {
+	public Lotacao salvar(Lotacao novaEntidade) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -17,21 +26,20 @@ public class LotacaoDAO implements BaseDAO {
 		return false;
 	}
 
-	public boolean alterar(Object entidade) {
+	public boolean alterar(Lotacao entidade) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	public Object consultarPorId(int id) {
+	public Lotacao consultarPorId(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public ArrayList consultarTodos() {
+	public ArrayList<Lotacao> consultarTodos() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	
-    
+	    
 }

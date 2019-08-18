@@ -8,11 +8,11 @@ public class Diretoria extends Lotacao {
     private String sigla;
     private ArrayList<Gerencias> gerencias;
 
-    public Diretoria(String sigla, ArrayList<Gerencias> gerencias, String nome, Empregado responsavel) {
-        super(nome, responsavel);
-        this.sigla = sigla;
-        this.gerencias = gerencias;
-    }
+	public Diretoria(int id, String nome, Empregado responsavel, String sigla, ArrayList<Gerencias> gerencias) {
+		super(id, nome, responsavel);
+		this.sigla = sigla;
+		this.gerencias = gerencias;
+	}
 
 	public Object getGerencias() {
 		// TODO Auto-generated method stub
