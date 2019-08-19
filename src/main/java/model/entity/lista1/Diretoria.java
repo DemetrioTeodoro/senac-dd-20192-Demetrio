@@ -2,14 +2,14 @@ package model.entity.lista1;
 
 import java.util.ArrayList;
 
-
 public class Diretoria extends Lotacao {
-    
-    private String sigla;
-    private ArrayList<Gerencias> gerencias;
 
-	public Diretoria(int id, String nome, Empregado responsavel, String sigla, ArrayList<Gerencias> gerencias) {
-		super(id, nome, responsavel);
+	private String sigla;
+	private ArrayList<Gerencias> gerencias;
+
+	public Diretoria(int id, String nome, Lotacao lotacao, Empregado responsavel, String sigla,
+			ArrayList<Gerencias> gerencias) {
+		super(id, nome, lotacao, responsavel);
 		this.sigla = sigla;
 		this.gerencias = gerencias;
 	}
@@ -31,6 +31,4 @@ public class Diretoria extends Lotacao {
 		this.gerencias = gerencias;
 	}
 
-        
-    
 }

@@ -1,18 +1,19 @@
 package model.entity.lista1;
 
 public abstract class Empregado {
-	
+
 	private int id;
 	private String nome;
 	private String cpf;
 	private boolean sexo;
 	private int idade;
 	private double salarioBruto;
+	private Lotacao lotacao;
 	private double descontosImpostoDeRenda;
 	private double contribuicaoPrevidenciaria;
 	private double salarioBase;
-		
-	public Empregado(int id, String nome, String cpf, boolean sexo, int idade, double salarioBruto,
+
+	public Empregado(int id, String nome, String cpf, boolean sexo, int idade, double salarioBruto, Lotacao lotacao,
 			double descontosImpostoDeRenda, double contribuicaoPrevidenciaria, double salarioBase) {
 		super();
 		this.id = id;
@@ -21,16 +22,17 @@ public abstract class Empregado {
 		this.sexo = sexo;
 		this.idade = idade;
 		this.salarioBruto = salarioBruto;
+		this.lotacao = lotacao;
 		this.descontosImpostoDeRenda = descontosImpostoDeRenda;
 		this.contribuicaoPrevidenciaria = contribuicaoPrevidenciaria;
 		this.salarioBase = salarioBase;
 	}
-		
+
 	public Empregado() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -79,12 +81,28 @@ public abstract class Empregado {
 		this.salarioBruto = salarioBruto;
 	}
 
+	public Lotacao getLotacao() {
+		return lotacao;
+	}
+
+	public void setLotacao(Lotacao lotacao) {
+		this.lotacao = lotacao;
+	}
+
 	public double getDescontosImpostoDeRenda() {
 		return descontosImpostoDeRenda;
 	}
 
+	public void setDescontosImpostoDeRenda(double descontosImpostoDeRenda) {
+		this.descontosImpostoDeRenda = descontosImpostoDeRenda;
+	}
+
 	public double getContribuicaoPrevidenciaria() {
 		return contribuicaoPrevidenciaria;
+	}
+
+	public void setContribuicaoPrevidenciaria(double contribuicaoPrevidenciaria) {
+		this.contribuicaoPrevidenciaria = contribuicaoPrevidenciaria;
 	}
 
 	public double getSalarioBase() {
@@ -96,31 +114,32 @@ public abstract class Empregado {
 	}
 
 	public abstract double calculaSalario();
-	
-	public void calcularSalarioBase() {
-		//salarioBase 
+
+	public void calcularSalarioBase(double salarioBruto) {
+		calculaDescontoIr();
+		calculaDescontoInss();
+		salarioBase = salarioBruto - (descontosImpostoDeRenda + contribuicaoPrevidenciaria);
 	}
-	
-	public double calculaDescontoIr(int salario) {
-		if (salario < 1800) {
-			descontosImpostoDeRenda = 0;
-		} else if (salario < 1800 || salario >= 3000) {
-			descontosImpostoDeRenda = ((salario/100)*10);
+
+	public void calculaDescontoIr() {
+		double descontosImpostoDeRendaMet;
+		if (salarioBruto < 1800) {
+			descontosImpostoDeRendaMet = 0;
+		} else if (salarioBruto < 1800 || salarioBruto >= 3000) {
+			descontosImpostoDeRendaMet = ((salarioBruto / 100) * 10);
 		} else {
-			descontosImpostoDeRenda = ((salario/100)*30);
+			descontosImpostoDeRendaMet = ((salarioBruto / 100) * 30);
 		}
-		return descontosImpostoDeRenda;
+		descontosImpostoDeRenda = descontosImpostoDeRendaMet;
 	}
-	
-	public double calculaDescontoInss(int idade) {
+
+	public void calculaDescontoInss() {
 		if (idade < 45) {
-			contribuicaoPrevidenciaria = salarioBruto - ((salarioBruto/100)*12);
+			contribuicaoPrevidenciaria = salarioBruto - ((salarioBruto / 100) * 12);
 		} else {
-			contribuicaoPrevidenciaria = salarioBruto - ((salarioBruto/100)*8);
+			contribuicaoPrevidenciaria = salarioBruto - ((salarioBruto / 100) * 8);
 		}
-		
-		return contribuicaoPrevidenciaria; 
+
 	}
-	
 
 }

@@ -1,16 +1,17 @@
 package model.entity.lista1;
 
-
 public abstract class Lotacao {
 
 	private int id;
-    private String nome;
-    private Empregado responsavel;
-	
-    public Lotacao(int id, String nome, Empregado responsavel) {
+	private String nome;
+	private Lotacao lotacao;
+	private Empregado responsavel;
+
+	public Lotacao(int id, String nome, Lotacao lotacao, Empregado responsavel) {
 		super();
 		this.id = id;
 		this.nome = nome;
+		this.lotacao = lotacao;
 		this.responsavel = responsavel;
 	}
 
@@ -35,6 +36,14 @@ public abstract class Lotacao {
 		this.nome = nome;
 	}
 
+	public Lotacao getLotacao() {
+		return lotacao;
+	}
+
+	public void setLotacao(Lotacao lotacao) {
+		this.lotacao = lotacao;
+	}
+
 	public Empregado getResponsavel() {
 		return responsavel;
 	}
@@ -42,13 +51,5 @@ public abstract class Lotacao {
 	public void setResponsavel(Empregado responsavel) {
 		this.responsavel = responsavel;
 	}
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
 }
