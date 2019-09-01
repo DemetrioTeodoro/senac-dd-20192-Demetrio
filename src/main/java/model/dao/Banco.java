@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  * Classe criada na disciplina de POO (2019/1).
@@ -18,7 +19,7 @@ import java.sql.Statement;
  * @author Adriano de Melo
  * 
  *         Vilmar César Pereira Júnior (continuação em Desenvolvimento Desktop
- *         2018/2)
+ *         2018/2) -- ALTERADO remotamente (no github)
  * 
  *         Diferenças entre Statement e PreparedStatement:
  * 
@@ -65,7 +66,7 @@ import java.sql.Statement;
 public class Banco {
 
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
-	private static final String BANCODADOS = "dbcontrolegastos";
+	private static final String BANCODADOS = "exemplos";
 	private static final String CONEXAO = "jdbc:mysql://localhost:3306/" + BANCODADOS
 			+ "?useTimezone=true&serverTimezone=UTC";
 	private static final String USER = "root";

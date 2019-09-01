@@ -1,44 +1,55 @@
 package model.entity.lista1;
 
 public abstract class Empregado {
-
 	private int id;
 	private String nome;
 	private String cpf;
-	private boolean sexo;
+	private char sexo;
 	private int idade;
 	private double salarioBruto;
-	private Lotacao lotacao;
-	private double descontosImpostoDeRenda;
-	private double contribuicaoPrevidenciaria;
+	private double descontoImpostoRenda;
+	private double descontoPrevidencia;
 	private double salarioBase;
-
-	public Empregado(int id, String nome, String cpf, boolean sexo, int idade, double salarioBruto, Lotacao lotacao,
-			double descontosImpostoDeRenda, double contribuicaoPrevidenciaria, double salarioBase) {
+	
+	public Empregado() {
+		
+	}
+	
+	public Empregado(String nome, String cpf, char sexo, int idade, double salarioBruto) {
 		super();
-		this.id = id;
 		this.nome = nome;
 		this.cpf = cpf;
 		this.sexo = sexo;
 		this.idade = idade;
 		this.salarioBruto = salarioBruto;
-		this.lotacao = lotacao;
-		this.descontosImpostoDeRenda = descontosImpostoDeRenda;
-		this.contribuicaoPrevidenciaria = contribuicaoPrevidenciaria;
-		this.salarioBase = salarioBase;
+		calcularSalarioBase();
 	}
 
-	public Empregado() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	public abstract double calcularSalario();
 
-	public int getId() {
-		return id;
+	private void calcularSalarioBase() {
+		calcularDescontoIR();
+		calcularDescontoPrevidencia();
+		salarioBase = this.salarioBruto - (this.descontoImpostoRenda + this.descontoPrevidencia); 
 	}
-
-	public void setId(int id) {
-		this.id = id;
+	
+	public void calcularDescontoIR() {
+		double descontoImpostoRendaCalculado = 0;
+		
+		if(this.salarioBruto >= 1800 && this.salarioBruto <= 3000) {
+			descontoImpostoRendaCalculado = this.salarioBruto * 0.1;
+		}else if(this.salarioBruto > 3000) {
+			descontoImpostoRendaCalculado = this.salarioBruto * 0.15;
+		}
+		this.descontoImpostoRenda = descontoImpostoRendaCalculado;
+	}
+	
+	public void calcularDescontoPrevidencia() {
+		if(this.idade < 45) {
+			setDescontoPrevidencia(this.getSalarioBruto() * 0.12);
+		}else if(this.salarioBruto > 3000) {
+			setDescontoPrevidencia(this.getSalarioBruto() * 0.08);
+		}
 	}
 
 	public String getNome() {
@@ -57,11 +68,11 @@ public abstract class Empregado {
 		this.cpf = cpf;
 	}
 
-	public boolean isSexo() {
+	public char getSexo() {
 		return sexo;
 	}
 
-	public void setSexo(boolean sexo) {
+	public void setSexo(char sexo) {
 		this.sexo = sexo;
 	}
 
@@ -71,6 +82,7 @@ public abstract class Empregado {
 
 	public void setIdade(int idade) {
 		this.idade = idade;
+		calcularSalarioBase();
 	}
 
 	public double getSalarioBruto() {
@@ -79,30 +91,19 @@ public abstract class Empregado {
 
 	public void setSalarioBruto(double salarioBruto) {
 		this.salarioBruto = salarioBruto;
+		this.calcularDescontoIR();
 	}
 
-	public Lotacao getLotacao() {
-		return lotacao;
+	public double getDescontoImpostoRenda() {
+		return descontoImpostoRenda;
 	}
 
-	public void setLotacao(Lotacao lotacao) {
-		this.lotacao = lotacao;
+	public double getDescontoPrevidencia() {
+		return descontoPrevidencia;
 	}
 
-	public double getDescontosImpostoDeRenda() {
-		return descontosImpostoDeRenda;
-	}
-
-	public void setDescontosImpostoDeRenda(double descontosImpostoDeRenda) {
-		this.descontosImpostoDeRenda = descontosImpostoDeRenda;
-	}
-
-	public double getContribuicaoPrevidenciaria() {
-		return contribuicaoPrevidenciaria;
-	}
-
-	public void setContribuicaoPrevidenciaria(double contribuicaoPrevidenciaria) {
-		this.contribuicaoPrevidenciaria = contribuicaoPrevidenciaria;
+	public void setDescontoPrevidencia(double descontoPrevidencia) {
+		this.descontoPrevidencia = descontoPrevidencia;
 	}
 
 	public double getSalarioBase() {
@@ -113,33 +114,11 @@ public abstract class Empregado {
 		this.salarioBase = salarioBase;
 	}
 
-	public abstract double calculaSalario();
-
-	public void calcularSalarioBase(double salarioBruto) {
-		calculaDescontoIr();
-		calculaDescontoInss();
-		salarioBase = salarioBruto - (descontosImpostoDeRenda + contribuicaoPrevidenciaria);
+	public int getId() {
+		return id;
 	}
 
-	public void calculaDescontoIr() {
-		double descontosImpostoDeRendaMet;
-		if (salarioBruto < 1800) {
-			descontosImpostoDeRendaMet = 0;
-		} else if (salarioBruto < 1800 || salarioBruto >= 3000) {
-			descontosImpostoDeRendaMet = ((salarioBruto / 100) * 10);
-		} else {
-			descontosImpostoDeRendaMet = ((salarioBruto / 100) * 30);
-		}
-		descontosImpostoDeRenda = descontosImpostoDeRendaMet;
+	public void setId(int id) {
+		this.id = id;
 	}
-
-	public void calculaDescontoInss() {
-		if (idade < 45) {
-			contribuicaoPrevidenciaria = salarioBruto - ((salarioBruto / 100) * 12);
-		} else {
-			contribuicaoPrevidenciaria = salarioBruto - ((salarioBruto / 100) * 8);
-		}
-
-	}
-
 }

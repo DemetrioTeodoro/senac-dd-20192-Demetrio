@@ -3,32 +3,34 @@ package model.entity.lista1;
 import java.util.ArrayList;
 
 public class Diretoria extends Lotacao {
-
-	private String sigla;
-	private ArrayList<Gerencias> gerencias;
-
-	public Diretoria(int id, String nome, Lotacao lotacao, Empregado responsavel, String sigla,
-			ArrayList<Gerencias> gerencias) {
-		super(id, nome, lotacao, responsavel);
-		this.sigla = sigla;
+	
+	private Diretor diretor;
+	private ArrayList<Gerencia> gerencias;
+	
+	public Diretoria(String nome, String sigla, Diretor d, ArrayList<Gerencia> gerencias) {
+		super(nome, sigla);
+		this.diretor = d;
 		this.gerencias = gerencias;
 	}
 
-	public Object getGerencias() {
-		// TODO Auto-generated method stub
-		return null;
+	public Diretor getDiretor() {
+		return diretor;
 	}
 
-	public String getSigla() {
-		return sigla;
+	public void setDiretor(Diretor diretor) {
+		this.diretor = diretor;
 	}
 
-	public void setSigla(String sigla) {
-		this.sigla = sigla;
+	public ArrayList<Gerencia> getGerencias() {
+		return gerencias;
 	}
 
-	public void setGerencias(ArrayList<Gerencias> gerencias) {
+	public void setGerencias(ArrayList<Gerencia> gerencias) {
 		this.gerencias = gerencias;
 	}
 
+	@Override
+	public String toString() {
+		return "Diretoria [diretor=" + diretor + ", gerencias=" + gerencias + "]";
+	}
 }
